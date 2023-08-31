@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: userdatabase
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin_password
+    ports:
+      - "3306:3306"

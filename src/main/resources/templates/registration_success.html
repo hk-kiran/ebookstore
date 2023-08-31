@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles.css">
+        <title>Registration Success</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <header class="header">
+                <h1 th:text="${message}"></h1>
+            </header>
+            <main class="main-content">
+                <p th:text="${formData.name}"></p>
+                <p>Your library account has been created successfully!</p>
+                <p>You can now log in using your credentials.</p>
+            </main>
+            <footer class="footer">
+                <p>&copy; 2023 Your Library</p>
+            </footer>
+        </div>
+    </body>
+
+</html>

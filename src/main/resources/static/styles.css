@@ -1,0 +1,121 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('./images/library.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    /* Necessary for stacking ::before content */
+}
+
+/* Glass effect */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(226, 255, 253, 0.174);
+    /* Adjust transparency */
+    backdrop-filter: blur(0.31px);
+    /* Adjust blur amount */
+    z-index: -1;
+    /* Place ::before behind other content */
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.login-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 11px;
+}
+
+/* Password strength indicator styles */
+.password-strength {
+    margin-top: 10px;
+}
+
+.password-strength span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.strength-indicator {
+    color: #333;
+}
+
+.strong {
+    color: #37b837d0;
+}
+
+/* Message styles */
+.message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #d9534f;
+    /* Red color for error messages */
+}
+
+.success-message {
+    color: #5cb85c;
+    /* Green color for success messages */
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles.css">
+        <script src="/createAcc.js"></script>
+        <title>Login Page</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <header class="header">
+                <h1>Create Your Library Account</h1>
+            </header>
+            <main class="main-content">
+                <form class="login-form" method="POST" action="/register" onsubmit="return validateForm()">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" autocomplete="off" placeholder="Pavitr Prabhakar" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" autocomplete="off" placeholder="pavitr@prabhakar.com" required>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" autocomplete="off" placeholder="p_prabakar" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" autocomplete="off" placeholder="password" required onkeyup="checkPasswordStrength(this.value)">
+                    <div class="password-strength">
+                        <span class="strength-indicator uppercase"></span>
+                        <span class="strength-indicator lowercase"></span>
+                        <span class="strength-indicator special"></span>
+                        <span class="strength-indicator number"></span>
+                    </div>
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="off" placeholder="password" required>
+                    <button type="submit">Create Account</button>
+                    <div id="message" class="message"></div>
+                </form>
+            </main>
+            <footer class="footer">
+                <p>&copy; 2023 Library</p>
+            </footer>
+        </div>
+    </body>
+
+</html>
