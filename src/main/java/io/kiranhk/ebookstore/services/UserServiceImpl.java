@@ -1,10 +1,11 @@
-package io.kiranhk.library.services;
+package io.kiranhk.ebookstore.services;
 
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.kiranhk.library.repositories.*;
-import io.kiranhk.library.models.*;
+
+import io.kiranhk.ebookstore.models.*;
+import io.kiranhk.ebookstore.repositories.*;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -1,4 +1,4 @@
-package io.kiranhk.library.controllers;
+package io.kiranhk.ebookstore.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import io.kiranhk.library.models.*;
-import io.kiranhk.library.services.*;
+import io.kiranhk.ebookstore.models.*;
+import io.kiranhk.ebookstore.services.*;
 
 @Controller
 public class webController {

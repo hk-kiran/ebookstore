@@ -1,10 +1,10 @@
-package io.kiranhk.library.repositories;
+package io.kiranhk.ebookstore.repositories;
 
 import java.util.*;
 
 import org.springframework.stereotype.Repository;
 
-import io.kiranhk.library.models.LibraryUser;
+import io.kiranhk.ebookstore.models.LibraryUser;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -15,7 +15,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<LibraryUser> findAll() {
         return new ArrayList<LibraryUser>(datastore.values());
     }
-    
+
     @Override
     public LibraryUser save(LibraryUser user) {
 

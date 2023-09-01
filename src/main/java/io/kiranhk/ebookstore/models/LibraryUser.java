@@ -1,4 +1,4 @@
-package io.kiranhk.library.models;
+package io.kiranhk.ebookstore.models;
 
 import javax.persistence.*;
 

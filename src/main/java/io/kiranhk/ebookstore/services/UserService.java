@@ -1,7 +1,8 @@
-package io.kiranhk.library.services;
+package io.kiranhk.ebookstore.services;
 
 import java.util.*;
-import io.kiranhk.library.models.*;
+
+import io.kiranhk.ebookstore.models.*;
 
 public interface UserService {
     LibraryUser saveUser(LibraryUser user);
