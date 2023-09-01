@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CI
 
 on: 
   push:
@@ -9,7 +9,7 @@ on:
   
 
 jobs:
-  CICD:
+  CI:
 
     runs-on: ubuntu-latest
 
