@@ -1,8 +1,10 @@
 package io.kiranhk.library.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import java.util.List;
 import io.kiranhk.library.models.LibraryUser;
 
-public interface UserRepository extends JpaRepository<LibraryUser, Long> {
+public interface UserRepository {
+    LibraryUser save(LibraryUser user);
+
+    List<LibraryUser> findAll();
 }
