@@ -5,7 +5,7 @@ import java.util.*;
 import io.kiranhk.ebookstore.models.*;
 
 public interface UserService {
-    LibraryUser saveUser(LibraryUser user);
+    User saveUser(User user);
 
-    List<LibraryUser> getAllUsers();
+    List<User> getAllUsers();
 }

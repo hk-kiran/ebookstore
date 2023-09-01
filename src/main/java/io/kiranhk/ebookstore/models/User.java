@@ -3,8 +3,8 @@ package io.kiranhk.ebookstore.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "USERDATA")
-public class LibraryUser {
+@Table(name = "USER")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
