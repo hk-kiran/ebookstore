@@ -13,11 +13,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public LibraryUser saveUser(LibraryUser user) {
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    public List<LibraryUser> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

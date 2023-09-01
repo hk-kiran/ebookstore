@@ -2,10 +2,10 @@ package io.kiranhk.ebookstore.repositories;
 
 import java.util.List;
 
-import io.kiranhk.ebookstore.models.LibraryUser;
+import io.kiranhk.ebookstore.models.User;
 
 public interface UserRepository {
-    LibraryUser save(LibraryUser user);
+    User save(User user);
 
-    List<LibraryUser> findAll();
+    List<User> findAll();
 }

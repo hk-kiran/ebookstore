@@ -23,7 +23,7 @@ public class webController {
     }
 
     @PostMapping("/register")
-    public @ResponseBody ModelAndView Register(@ModelAttribute LibraryUser userData) {
+    public @ResponseBody ModelAndView Register(@ModelAttribute User userData) {
 
         userService.saveUser(userData);
 
