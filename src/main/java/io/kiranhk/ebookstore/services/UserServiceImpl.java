@@ -11,13 +11,13 @@ import io.kiranhk.ebookstore.repositories.*;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private Users users;
 
     public User saveUser(User user) {
-        return userRepository.save(user);
+        return users.save(user);
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return users.findAll();
     }
 }
