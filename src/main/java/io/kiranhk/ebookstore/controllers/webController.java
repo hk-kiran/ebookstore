@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.kiranhk.ebookstore.models.*;
-import io.kiranhk.ebookstore.services.*;
+import io.kiranhk.ebookstore.services.UserService;
 
 @Controller
 public class webController {
@@ -25,12 +25,11 @@ public class webController {
     @PostMapping("/register")
     public @ResponseBody ModelAndView Register(@ModelAttribute User userData) {
 
-        userService.saveUser(userData);
+        userService.createOrUpdate(userData);
 
         ModelAndView modelAndView = new ModelAndView("registration_success");
         modelAndView.addObject("message", "Registration successful!");
-        System.out.println(userService.getAllUsers().toString());
-        System.out.println(userService.getAllUsers().toString());
+        System.out.println(userService.getAll().toString());
         modelAndView.addObject("formData", userData);
         return modelAndView;
     }

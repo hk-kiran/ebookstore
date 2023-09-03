@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import io.kiranhk.ebookstore.models.WishList;
 
 @Repository
-public class WishLists {
+public class WishListsRepo {
     private static final Map<Long, WishList> datastore = new HashMap<>();
 
     public static Map<Long, WishList> getDatastore() {
