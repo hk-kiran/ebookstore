@@ -1,17 +1,20 @@
 package io.kiranhk.ebookstore.controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.http.ResponseEntity;
 
 import io.kiranhk.ebookstore.models.*;
 import io.kiranhk.ebookstore.services.*;
 
-@Controller
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class webController {
 
     @Autowired
@@ -23,16 +26,13 @@ public class webController {
     }
 
     @PostMapping("/register")
-    public @ResponseBody ModelAndView Register(@ModelAttribute User userData) {
+    public ResponseEntity<String> Register(@ModelAttribute User userData) {
 
-        userService.saveUser(userData);
+        User user = userService.saveUser(userData);
 
-        ModelAndView modelAndView = new ModelAndView("registration_success");
-        modelAndView.addObject("message", "Registration successful!");
-        System.out.println(userService.getAllUsers().toString());
-        System.out.println(userService.getAllUsers().toString());
-        modelAndView.addObject("formData", userData);
-        return modelAndView;
+        if (user.getId() != null) {
+            return ResponseEntity.ok("User Registered Successfully");
+        }
+        return ResponseEntity.badRequest().body("Bad Request");
     }
-
 }
