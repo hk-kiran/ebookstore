@@ -32,5 +32,24 @@ build/
 ### VS Code ###
 .vscode/
 
-### Maven ###
-.mvn/
+# dependencies
+ebookstore-ui/node_modules
+ebookstore-ui/.pnp
+ebookstore-ui/.pnp.js
+
+# testing
+ebookstore-ui/coverage
+
+# production
+ebookstore-ui/build
+
+# misc
+**.DS_Store
+**.env.local
+**.env.development.local
+**.env.test.local
+**.env.production.local
+
+ebookstore-ui/npm-debug.log*
+ebookstore-ui/yarn-debug.log*
+ebookstore-ui/yarn-error.log*
