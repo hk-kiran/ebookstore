@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './RegistrationForm';
 import SignIn from './SignIn';
+import HomePage from './Homepage';
 
 const Routers: React.FC = () => {
     return (
@@ -9,7 +10,7 @@ const Routers: React.FC = () => {
             <Routes>
                 <Route path="/register" Component={SignUp} />
                 <Route path="/signin" Component={SignIn} />
-                {/* Add more routes as needed */}
+                <Route path="/app" Component={HomePage} />
             </Routes>
         </Router>
     );
