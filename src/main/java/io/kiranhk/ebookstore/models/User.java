@@ -1,5 +1,6 @@
 package io.kiranhk.ebookstore.models;
 
+import java.util.Random;
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +15,11 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private static Random random = new Random();
+
+    public User() {
+        setId(random.nextLong());
+    }
 
     public Long getId() {
         return id;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import io.kiranhk.ebookstore.models.Cart;
 
 @Repository
-public class BookCarts {
+public class BookCartsRepo {
 
     private static final Map<Long, Cart> datastore = new HashMap<>();
 

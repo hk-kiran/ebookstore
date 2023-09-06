@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import io.kiranhk.ebookstore.models.*;
-import io.kiranhk.ebookstore.services.*;
+import io.kiranhk.ebookstore.services.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -28,7 +28,7 @@ public class webController {
     @PostMapping("/register")
     public ResponseEntity<String> Register(@ModelAttribute User userData) {
 
-        User user = userService.saveUser(userData);
+        User user = userService.createOrUpdate(userData);
 
         if (user.getId() != null) {
             return ResponseEntity.ok("User Registered Successfully");
