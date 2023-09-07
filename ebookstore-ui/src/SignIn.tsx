@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -12,7 +10,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
 
 function Copyright(props: any) {
     return (
@@ -27,17 +26,60 @@ function Copyright(props: any) {
     );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
+function formDataToJson(formData: FormData): { [key: string]: any } {
+    const jsonObject: { [key: string]: any } = {};
+
+    formData.forEach((value, key) => {
+        // Check if the key already exists in the JSON object
+        if (jsonObject.hasOwnProperty(key)) {
+            // If it does, convert the value to an array
+            if (!Array.isArray(jsonObject[key])) {
+                jsonObject[key] = [jsonObject[key]];
+            }
+            jsonObject[key].push(value);
+        } else {
+            // If the key doesn't exist, add it to the JSON object
+            jsonObject[key] = value;
+        }
+    });
+
+    return jsonObject;
+}
+
 export default function SignIn() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const navigate = useNavigate();
+    const [error, setError] = React.useState<string | null>(null);
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        try {
+            var object = formDataToJson(data)
+            console.log(JSON.stringify(object))
+            const response = await fetch("http://localhost:8080/api/signin", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(object),
+            });
+            if (response.status === 200) {
+                console.log('User Logged in successfully');
+                navigate('/app');
+            } else {
+                if (response.status === 401) {
+                    setError("Invalid Credentials. Please try again")
+                    console.error('Error Logging in', error);
+                } else {
+                    throw new Error("");
+                }
+            }
+        } catch (error) {
+            setError("Unable to Login at the moment. Please try again")
+            console.error('Error Logging in', error);
+        }
     };
 
     return (
@@ -74,6 +116,7 @@ export default function SignIn() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
+                        {error && <Alert severity="error">{error}</Alert>}
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
@@ -82,8 +125,9 @@ export default function SignIn() {
                                 id="email"
                                 label="Email Address"
                                 name="email"
-                                autoComplete="email"
                                 autoFocus
+                                autoComplete="off"
+                                onClick={() => setError(null)}
                             />
                             <TextField
                                 margin="normal"
@@ -93,7 +137,8 @@ export default function SignIn() {
                                 label="Password"
                                 type="password"
                                 id="password"
-                                autoComplete="current-password"
+                                autoComplete="off"
+                                onClick={() => setError(null)}
                             />
                             <Button
                                 type="submit"
