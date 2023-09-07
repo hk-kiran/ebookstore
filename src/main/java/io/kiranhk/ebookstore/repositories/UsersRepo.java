@@ -21,7 +21,8 @@ public class UsersRepo {
     }
 
     public User save(User user) {
-        return datastore.put(user.getId(), user);
+        datastore.put(user.getId(), user);
+        return datastore.get(user.getId());
     }
 
     public User get(Long id) {
