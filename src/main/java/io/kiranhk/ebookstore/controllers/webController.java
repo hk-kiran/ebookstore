@@ -1,11 +1,13 @@
 package io.kiranhk.ebookstore.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,9 @@ public class webController {
         log.info("received register request");
         User user = userService.createOrUpdate(userData);
         System.out.println(user);
-        if (user != null && user.getId() != null) {
+        if (Objects.isNull(user)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate credentials");
+        } else if (user.getId() != null) {
             log.info("registered successfully");
             return ResponseEntity.ok("User Registered Successfully");
         }

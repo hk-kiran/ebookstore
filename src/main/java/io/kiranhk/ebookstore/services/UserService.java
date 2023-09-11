@@ -19,13 +19,16 @@ public class UserService implements BasicServices<User> {
     private UsersRepo users;
 
     @Override
-    public User createOrUpdate(User object) {
-        return users.save(object);
+    public User createOrUpdate(User user) {
+        if (isDuplicateCredentials(user)) {
+            return null;
+        }
+        return users.save(user);
     }
 
     @Override
-    public User delete(User object) {
-        return users.remove(object.getId());
+    public User delete(User user) {
+        return users.remove(user.getId());
     }
 
     @Override
@@ -39,6 +42,13 @@ public class UserService implements BasicServices<User> {
     }
 
     // TODO: Optimize
+    /**
+     * This method verifies the user information while user login aginst the
+     * database[For now local storage]
+     * 
+     * @param user
+     * @return
+     */
     public boolean verifyUser(User user) {
         for (User usr : users.findAll()) {
             if ((usr.getEmail().equals(user.getEmail()) || usr.getUsername().equals(user.getEmail()))
@@ -47,6 +57,22 @@ public class UserService implements BasicServices<User> {
             }
         }
 
+        return false;
+    }
+
+    /**
+     * This method chack for the duplicate credentials[Email and User Name] and will
+     * not allow the user to register with the duplicate credentials
+     * 
+     * @param user
+     * @return
+     */
+    public boolean isDuplicateCredentials(User user) {
+        for (User usr : users.findAll()) {
+            if (usr.getEmail().equals(user.getEmail()) || usr.getUsername().equals(user.getUsername())) {
+                return true;
+            }
+        }
         return false;
     }
 
