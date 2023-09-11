@@ -65,13 +65,12 @@ export default function SignUp() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(object),
-            });
-            
+            });            
               if (response.status === 200) {
                 console.log('User registered successfully');
                 navigate('/signin');
             } else if(response.status === 409){
-                setError("Unable to Register due to the duplciate credentials. Please try again with unique credentials")
+                setError(await response.text())
                 console.error('Error registering user', error);
             } else {
                 setError("Unable to Register at the moment. Please try again")

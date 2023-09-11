@@ -44,11 +44,16 @@ public class webController {
     @PostMapping("/register")
     public ResponseEntity<String> Register(@RequestBody User userData) {
         log.info("received register request");
+        if (userService.isUserExist(userData)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists. Try logging In");
+        } else if (userService.isDuplicateUserName(userData)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Username already exists, please pick a different one");
+        }
+
         User user = userService.createOrUpdate(userData);
         System.out.println(user);
-        if (Objects.isNull(user)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate credentials");
-        } else if (user.getId() != null) {
+        if (Objects.nonNull(user) && Objects.nonNull(user.getId())) {
             log.info("registered successfully");
             return ResponseEntity.ok("User Registered Successfully");
         }

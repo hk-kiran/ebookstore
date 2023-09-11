@@ -20,9 +20,6 @@ public class UserService implements BasicServices<User> {
 
     @Override
     public User createOrUpdate(User user) {
-        if (isDuplicateCredentials(user)) {
-            return null;
-        }
         return users.save(user);
     }
 
@@ -61,15 +58,29 @@ public class UserService implements BasicServices<User> {
     }
 
     /**
-     * This method chack for the duplicate credentials[Email and User Name] and will
-     * not allow the user to register with the duplicate credentials
+     * This method chack if the user already exists
      * 
      * @param user
      * @return
      */
-    public boolean isDuplicateCredentials(User user) {
+    public boolean isUserExist(User user) {
         for (User usr : users.findAll()) {
-            if (usr.getEmail().equals(user.getEmail()) || usr.getUsername().equals(user.getUsername())) {
+            if (usr.getEmail().equals(user.getEmail())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This method chack if the user name is already in use
+     * 
+     * @param user
+     * @return
+     */
+    public boolean isDuplicateUserName(User user) {
+        for (User usr : users.findAll()) {
+            if (usr.getUsername().equals(user.getUsername())) {
                 return true;
             }
         }
