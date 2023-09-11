@@ -41,7 +41,8 @@ public class UserService implements BasicServices<User> {
     // TODO: Optimize
     public boolean verifyUser(User user) {
         for (User usr : users.findAll()) {
-            if (usr.getEmail().equals(user.getEmail()) && usr.getPassword().equals(user.getPassword())) {
+            if ((usr.getEmail().equals(user.getEmail()) || usr.getUsername().equals(user.getEmail()))
+                    && usr.getPassword().equals(user.getPassword())) {
                 return true;
             }
         }
