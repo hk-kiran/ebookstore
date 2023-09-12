@@ -1,11 +1,13 @@
 package io.kiranhk.ebookstore.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +44,16 @@ public class webController {
     @PostMapping("/register")
     public ResponseEntity<String> Register(@RequestBody User userData) {
         log.info("received register request");
+        if (userService.isUserExist(userData)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists. Try logging In");
+        } else if (userService.isDuplicateUserName(userData)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Username already exists, please pick a different one");
+        }
+
         User user = userService.createOrUpdate(userData);
         System.out.println(user);
-        if (user != null && user.getId() != null) {
+        if (Objects.nonNull(user) && Objects.nonNull(user.getId())) {
             log.info("registered successfully");
             return ResponseEntity.ok("User Registered Successfully");
         }

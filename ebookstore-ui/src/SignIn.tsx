@@ -55,7 +55,7 @@ export default function SignIn() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        try {
+                try {
             var object = formDataToJson(data)
             console.log(JSON.stringify(object))
             const response = await fetch("http://localhost:8080/api/signin", {
@@ -65,7 +65,7 @@ export default function SignIn() {
                 },
                 body: JSON.stringify(object),
             });
-            if (response.status === 200) {
+                        if (response.status === 200) {
                 console.log('User Logged in successfully');
                 navigate('/app');
             } else {
@@ -123,7 +123,7 @@ export default function SignIn() {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label="Email Address / User Name"
                                 name="email"
                                 autoFocus
                                 autoComplete="off"
